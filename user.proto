@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package micro_forum_proto;
+
+option go_package = "github.com/zhayt/micro-forum-proto";
+
+message User {
+  uint64 id = 1;
+  string name = 2;
+  string email = 3;
+  string password = 4;
+}
+
+message UserProfileDTO {
+  uint64 id = 1;
+  string name = 2;
+  string email = 3;
+}
+
+message GetUserByIDReq {
+  uint64 id = 1;
+}
+
+message GetUserByEmailReq {
+  string email = 1;
+}
+
+message ChangeUserPasswordDTO {
+  string email = 1;
+  string old_password = 2;
+  string new_password = 3;
+  string confirm_new_password = 4;
+}
+
+message UserUpdateResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message ChangeUserNameDTO {
+  string email = 1;
+  string new_name = 2;
+}
+
+service UserService {
+  rpc CreateUser(User) returns (UserProfileDTO);
+  rpc GetUserByID(GetUserByIDReq) returns (User);
+  rpc GetUserByEmail(GetUserByEmailReq) returns (User);
+  rpc UpdateUserPassword(ChangeUserPasswordDTO) returns (UserUpdateResponse);
+  rpc UpdateUserName(ChangeUserNameDTO) returns(UserUpdateResponse);
+}
