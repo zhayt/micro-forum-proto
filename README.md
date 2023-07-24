@@ -1,3 +1,3 @@
 # MICRO-FORUM
-# MIC
+# MICRO-FORUM-PROTO
 Proto files for project
